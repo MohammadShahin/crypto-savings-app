@@ -10,7 +10,7 @@ async function mint() {
         "0x5BEddCddAb781d1b01073231A9B6DF5828DDA042",
         abi,
         signer);
-    await savus.mint("0xf510055Ce47C40082f075E87ab79df178ed02590", ethers.utils.parseEther("10000"));
+    await savus.mint("0xA6745199cA68bb541E647A4d9B401202378bF0c0", ethers.utils.parseEther("10000"));
     console.log("minted!")
 }
 

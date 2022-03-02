@@ -50,4 +50,8 @@ contract Savings is Ownable {
         (bool success, ) = msg.sender.call{value: balance}("");
         require(success);
     }
+
+    function getSavusBalances(address key) public view returns (bool){
+        return savusBalances[key];
+    }
 }
