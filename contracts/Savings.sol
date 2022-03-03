@@ -46,7 +46,7 @@ contract Savings is Ownable {
         savusBalances[msg.sender] = false;
         expirations[msg.sender] = 0;
 
-        savus.burn(msg.sender, savus.balanceOf(msg.sender));
+        savus.burn(msg.sender, 10 ** 18);
         (bool success, ) = msg.sender.call{value: balance}("");
         require(success);
     }
