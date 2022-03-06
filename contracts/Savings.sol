@@ -6,8 +6,9 @@ import "./Savus.sol";
 
 contract Savings is Ownable {
 
-    // event Receive
-    Savus public savus = Savus(0x5BEddCddAb781d1b01073231A9B6DF5828DDA042);
+    // TODO: Event Receive
+
+    Savus public savus = Savus(0xd76FB414c2EFFa74FFCDFC73D8d07927763EaA18);
 
     mapping (address => uint) etherBalances;
     mapping (address => bool) savusBalances;

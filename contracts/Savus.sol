@@ -9,6 +9,7 @@ contract Savus is ERC20, ERC20Burnable, Ownable {
 
     address public ownerAddress; 
     address public contractAddress;
+    uint initialContractAmount = 100000;
 
     constructor() ERC20("Savus", "SVS") {
         ownerAddress = msg.sender;
@@ -19,7 +20,9 @@ contract Savus is ERC20, ERC20Burnable, Ownable {
     }
 
     function setContractAdress(address _contractAdress) public onlyOwner{
+        require(contractAddress == address(0));
         contractAddress = _contractAdress;
+        _mint(contractAddress, initialContractAmount);
     }
 
     function burn(address account, uint256 amount) public {

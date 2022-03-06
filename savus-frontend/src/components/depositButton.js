@@ -13,22 +13,18 @@ class DepositButton extends React.Component{
             goalAmount: null,
             duration: null
         }
-        this.getress = this.getress.bind(this);
+        this.getAddress = this.getAddress.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
-    async getress(){
-        // let web3 = new Web3(window.ethereum)
-        // window.ethereum.enable().catch(error => {
-        //     // User denied account access
-        //     console.log(error)
-        // })
-        // const accounts = await web3.eth.getAccounts()
-        // let curAccount = accounts[0];
-        // return curAccount;
-        return "0x8A14b1e068773bAeB342299576cE4b94e79d5d18"
+    async getAddress(){
+        const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        return address;
     }
 
     async handleClick(_event) {
@@ -38,18 +34,17 @@ class DepositButton extends React.Component{
             });
             return;
         }
-        let curAddress = await this.getress();
-        console.log(curAddress)
+        let curAddress = await this.getAddress();
         let provider = new ethers.providers.Web3Provider(window.ethereum);
         const contract = new ethers.Contract(
             ADDRESS,
             ABI,
             provider
         )
-        let savusBalance = await contract.getSavusBalances(curAddress);
+        let _savusBalance = await contract.getSavusBalances(curAddress);
         this.setState({
             show: true,
-            savusBalance: savusBalance
+            savusBalance: _savusBalance
         });
     }
 
@@ -62,16 +57,23 @@ class DepositButton extends React.Component{
             ABI,
             signer
         )
-        let numOfWeis = this.state.weiAmount;
+        let numOfEthers = ethers.utils.formatEther(this.state.weiAmount);
         const overrides = {
-            value: numOfWeis.toString()
+            value: ethers.utils.parseEther(numOfEthers)
         }
         if (this.state.savusBalance){
-            await contract.receive(overrides)
+            const tx = {
+                ...overrides,
+                to: ADDRESS,
+            }
+            await signer.sendTransaction(tx);
         }
         else{
             await contract.deposit(this.state.goalAmount, this.state.duration, overrides);
         }
+        this.setState({
+            show: true
+        });
     }
 
     handleChange(event) {

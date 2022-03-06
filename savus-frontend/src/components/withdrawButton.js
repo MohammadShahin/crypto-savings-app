@@ -14,12 +14,19 @@ class WithdrawButton extends React.Component{
 
     async handleClick(){
         let provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner()
         const contract = new ethers.Contract(
             ADDRESS,
             ABI,
-            provider
+            signer
         )
-        await contract.withdrawAll();
+        let response;
+        try{
+            response = await contract.withdrawAll();
+        }
+        catch(error){
+            console.log(error)
+        }
     }
 
     render(){

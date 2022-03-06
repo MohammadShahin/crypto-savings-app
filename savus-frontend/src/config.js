@@ -1,4 +1,4 @@
-export const ADDRESS = "0xA6745199cA68bb541E647A4d9B401202378bF0c0"
+export const ADDRESS = "0xc275066477A1f5F15E581f14fb81C9c4f98CDC96"
 export const DECIMALS = 18;
 export const ABI = [
     {
