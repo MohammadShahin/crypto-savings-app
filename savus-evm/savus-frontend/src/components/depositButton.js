@@ -1,6 +1,7 @@
 import { ethers } from "ethers"
 import React from "react"
 import { ADDRESS, ABI, DECIMALS } from "./../config"
+import './depositButton.css';
 
 class DepositButton extends React.Component{
 
@@ -72,7 +73,7 @@ class DepositButton extends React.Component{
             await contract.deposit(this.state.goalAmount, this.state.duration, overrides);
         }
         this.setState({
-            show: true
+            show: false
         });
     }
 
@@ -86,7 +87,7 @@ class DepositButton extends React.Component{
     render(){
         if (this.state.show){
             return (
-                <div>
+                <div className="deposit-container">
                     <button onClick={this.handleClick}>
                         Deposit
                     </button>
@@ -145,7 +146,7 @@ class DepositButton extends React.Component{
             )
         }
         else{
-               return <button onClick={this.handleClick}>Deposit</button> 
+               return <div className="deposit-container"><button onClick={this.handleClick}>Deposit</button> </div>
         }
     }
 }

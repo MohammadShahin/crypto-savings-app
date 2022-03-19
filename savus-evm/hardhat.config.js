@@ -25,7 +25,7 @@ networks: {
   rinkeby: {
     url: "https://rinkeby.infura.io/v3/47cb6811574c4dbb91040ee2691d758d",
     accounts: [
-      ""
+    
     ] // add your Ethereum key here (private key)
   },
 }

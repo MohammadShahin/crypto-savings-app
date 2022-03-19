@@ -3,6 +3,8 @@ import './App.css';
 import DepositButton from './components/depositButton';
 import WithdrawButton from './components/withdrawButton';
 import { useEffect, useState } from "react";
+import {Header} from './components/Header';
+import {InfoBox} from './components/InfoBox';
 
 function App() {
 
@@ -16,10 +18,10 @@ function App() {
   return (
     <div className="App">
       {hasMetaMask ? <div>
+        <Header/>
         <DepositButton />
-        <hr />
-        <hr />
         <WithdrawButton />
+        <InfoBox/>
       </div>
         : "Please install MetaMask"}
     </div>

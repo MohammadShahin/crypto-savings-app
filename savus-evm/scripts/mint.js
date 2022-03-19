@@ -14,8 +14,9 @@ async function mint(tokenAddress, to, amount) {
     console.log("minted!")
 }
 
-const savusAddress = "0xd76FB414c2EFFa74FFCDFC73D8d07927763EaA18"
-const savingsAddress = "0xc275066477A1f5F15E581f14fb81C9c4f98CDC96";
+const savusAddress = "0x2e462F25C1E09f6687d787aE087786d137905BfD"
+const savingsAddress = "0x1C0e1eE325b1a7b79777B6Db16993068936185b0";
+
 const amount = 10000;
 
 mint(savusAddress, savingsAddress, amount)

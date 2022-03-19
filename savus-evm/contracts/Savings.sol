@@ -8,12 +8,12 @@ contract Savings is Ownable {
 
     // TODO: Event Receive
 
-    Savus public savus = Savus(0xd76FB414c2EFFa74FFCDFC73D8d07927763EaA18);
+    Savus public savus = Savus(0x2e462F25C1E09f6687d787aE087786d137905BfD);
 
     mapping (address => uint) etherBalances;
     mapping (address => bool) savusBalances;
     mapping (address => uint) goalAmounts;
-    mapping (address => uint) expirations;
+    mapping (address => uint256) expirations;
 
     constructor () {}
 
@@ -55,4 +55,16 @@ contract Savings is Ownable {
     function getSavusBalances(address key) public view returns (bool){
         return savusBalances[key];
     }
+
+    function getEtherBalances(address key) public view returns (uint){
+        return etherBalances[key];
+    } 
+
+    function getGoalAmounts(address key) public view returns (uint){
+        return goalAmounts[key];
+    } 
+
+    function getExpirations(address key) public view returns (uint256){
+        return expirations[key];
+    } 
 }

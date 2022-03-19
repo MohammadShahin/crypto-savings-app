@@ -1,6 +1,7 @@
 import { ethers } from "ethers"
 import React from "react"
-import { ADDRESS, ABI, DECIMALS } from "./../config"
+import { ADDRESS, ABI, DECIMALS } from "./../config";
+import './withdrawButton.css';
 
 class WithdrawButton extends React.Component{
 
@@ -31,7 +32,7 @@ class WithdrawButton extends React.Component{
 
     render(){
         return (
-            <button onClick={this.handleClick}>Withdraw</button> 
+            <div className="withdraw-container"><button onClick={this.handleClick}>Withdraw</button> </div>
         )
     }
 
