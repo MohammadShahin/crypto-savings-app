@@ -9,7 +9,7 @@ function InfoBox(){
     const [etherBalance, setEtherBalance] = useState(0);
     const [savusBalance, setSavusBalance] = useState(false);
     const [goalAmount, setGoalAmount] = useState(0);
-    const [expiration, setExpiration] = useState(Date.now() / 1000);
+    const [expiration, setExpiration] = useState(0);
 
     const sleep = (milliseconds) => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -56,7 +56,9 @@ function InfoBox(){
             <hr/>
             Goal Amount: {goalAmount}
             <hr/>
-            Goal deadline in {parseInt(expiration - (Date.now() / 1000))} seconds
+            {expiration === 0 ? "" : 
+            parseInt(expiration - (Date.now() / 1000)) > 0 ? "You can attempt withdrawing in " + parseInt(expiration - (Date.now() / 1000)) + " seconds" 
+            : "You can withdraw if you've met your goal"} 
         </div>
     )
 }
